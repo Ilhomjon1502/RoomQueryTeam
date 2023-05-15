@@ -12,4 +12,7 @@ interface MyDao {
 
     @Query("select * from MyContact")
     fun getAllContacts():List<MyContact>
+
+    @Query("SELECT * FROM MyContact WHERE name LIKE '%' || :searchQuery || '%' OR number LIKE '%' || :searchQuery || '%'")
+    fun searchUsers(searchQuery: String): List<MyContact>
 }

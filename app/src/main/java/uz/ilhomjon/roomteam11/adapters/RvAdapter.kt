@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.ilhomjon.roomteam11.databinding.ItemRvBinding
+import uz.ilhomjon.roomteam11.models.MyContact
 
-class RvAdapter(val list:ArrayList<String>):RecyclerView.Adapter<RvAdapter.Vh>() {
+class RvAdapter(var list:ArrayList<MyContact> = ArrayList()):RecyclerView.Adapter<RvAdapter.Vh>() {
 
     inner class Vh(val itemRvBinding: ItemRvBinding):RecyclerView.ViewHolder(itemRvBinding.root){
 
-        fun onBind(){
-
+        fun onBind(myContact: MyContact){
+            itemRvBinding.tvName.text = myContact.name
+            itemRvBinding.tvNumber.text=myContact.number
         }
     }
 
@@ -21,6 +23,6 @@ class RvAdapter(val list:ArrayList<String>):RecyclerView.Adapter<RvAdapter.Vh>()
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind()
+        holder.onBind(list[position])
     }
 }
